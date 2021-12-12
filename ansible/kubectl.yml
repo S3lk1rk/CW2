@@ -1,0 +1,20 @@
+- name: Creating a minikube instillation playbook on a virtual machine
+  hosts: localhost
+  user: ubuntu
+  become: yes
+  tasks:
+  - name: A. Update APT Package Manager
+    shell:
+        cmd: sudo apt-get update
+  - name: B. creating a transport package
+    apt:
+      name: apt-transport-https
+  - name: C. Pulling source information from the packages using source https
+    shell:
+        cmd: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+  - name: D. Sets the source for kubernetes
+    shell:
+        cmd: echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+  - name: E. Initialize
+    apt:
+       name: kubectl
