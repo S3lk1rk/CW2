@@ -1,0 +1,19 @@
+- name: Creating a minikube instillation playbook on a virtual machine
+  hosts: localhost
+  user: ubuntu
+  become: yes
+  tasks:
+  - name: A. Pulling source information from the packages using source https
+    shell:
+       cmd: curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+  - name: B. changing minicube permissions
+    shell:
+       cmd: chmod +x minikube
+  - name: C. making sure minikube is in the correct directory  
+    shell:
+        cmd: sudo mv minikube /usr/local/bin/  
+  - name: D. Initializing minikube
+    become: no
+    shell:
+        cmd: minikube start
+ 

@@ -1,0 +1,3 @@
+ - name: A playbook to deploy your image from dockerhub to kubernetes, create  a service for my application and scale your deployment appropriately to allow for rolling updates.
+    
+
