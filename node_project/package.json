@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-image-demo",
+  "name": "devopscoursework2",
   "version": "1.0.0",
-  "description": "nodejs-image-demo",
+  "description": "devopscoursework2",
   "author": "matthew selkirk>",
   "license": "MIT",
   "main": "app.js",
