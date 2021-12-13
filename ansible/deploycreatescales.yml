@@ -1,0 +1,13 @@
+- name: a playbook to deploy kubernetes to allow for rolling updates
+  hosts: localhost
+  user: ubuntu
+  become: yes
+  tasks:
+     - name: B. create deployment
+       become: no
+       shell:
+           cmd: kubectl create deployment kubernetes-cw2 --image=mselkirk/devopscoursework
+     - name: C. get deployments
+       become: no
+       shell:
+           cmd: kubectl get deployments
