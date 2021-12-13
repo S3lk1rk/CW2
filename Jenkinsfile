@@ -16,7 +16,6 @@ node {
   
 
         jenkdhub.inside {
-            node --version   
             sh 'echo "Tests passed"'
         }
     }
