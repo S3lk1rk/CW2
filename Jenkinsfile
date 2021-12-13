@@ -23,8 +23,13 @@ node {
     stage('Push image') {
         
         docker.withRegistry('https://registry.hub.docker.com', 'git') {
-            jenkdhub.push("${env.BUILD_NUMBER}")
+            jenkdhub.push("${env.latest}")
             jenkdhub.push("latest")
         }
+    stage('Cleanup docker images to prevent server capacity overload')
+        {
+         echo 'filler'
+        }	
+
     }
 }
