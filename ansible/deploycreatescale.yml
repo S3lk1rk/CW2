@@ -1,33 +1,33 @@
-- name: A playbook to deploy kubernetes to allow for rolling updates.
+- name: A playbook that will create a deployment from the dockerhub image, create a service and make the deployment scaleable. It will also clean up any existing versions.
   hosts: localhost
   user: ubuntu
   become: yes   
   tasks:
-    - name: A. delete deployment
+    - name: A. Clearing existing deployments
       become: no
       shell:
          cmd: kubectl delete deploy kubernetes-cw2
-    - name: B. create deployment
+    - name: B. initializing deployment from dockerhub
       become: no
       shell:
           cmd: kubectl create deployment kubernetes-cw2 --image=mselkirk/devopscoursework
-    - name: C. get deployments
+    - name: C. Checking if the deployment was successful
       become: no
       shell:
           cmd: kubectl get deployments
-    - name: D. delete service
+    - name: D. Removing existing service
       become: no
       shell:
           cmd: kubectl delete svc node-port-cw2
-    - name: E. create service
+    - name: E. Initializing the service to make the deployment accessible to Jenkins port
       become: no
       shell:
           cmd: kubectl expose deployment/kubernetes-cw2 --type="NodePort" --port 8080 --name node-port-cw2
-    - name: F. get services
+    - name: F. Checking if the service was initialized successfully
       become: no
       shell:
           cmd: kubectl get services
-    - name: G. Scale deployment
+    - name: G. Scale deployment by creating 4 replicas to prevent downtime
       become: no
       shell:
           cmd: kubectl scale deployments/kubernetes-cw2 --replicas=4   
