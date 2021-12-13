@@ -33,10 +33,10 @@ node {
         } 
        	
     stage('Deploying App to kubernetes') {
-      steps {
+      
         script {
           kubernetesDeploy(configs: "deploycreatescale.yml" , kubeconfigId: "kubernetes")
 	    }
-               }    
+                   
                                          }
 }
