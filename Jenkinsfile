@@ -23,20 +23,15 @@ node {
     stage('Push image')  {
         
         docker.withRegistry('https://registry.hub.docker.com', 'git') {
-            jenkdhub.push("${env.BUILD_NUMBER}")
             jenkdhub.push("latest")
-                                                                      }
-                         } 
-    stage('Cleanup docker images to prevent server capacity overload')
-        {
-         echo 'filler'
-        } 
+            jenkdhub.push("${env.BUILD_NUMBER}")
+                                                              }
        	
     stage('Deploying App to kubernetes') {
-      
+      steps{ 
         script {
-          kubernetesDeploy(configs: "ansible/deploycreatescale.yml" , kubeconfigId: "kubernetes")
+          kubectl set image deploy/nodejs-cwk2 nodejs-image-demontime2:latest
 	    }
-                   
+            }       
                                          }
 }
