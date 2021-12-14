@@ -27,11 +27,10 @@ node {
             jenkdhub.push("${env.BUILD_NUMBER}")
                                                               }
        	
-    stage('Deploying App to kubernetes') {
-      steps{ 
+    stage('Deploying App to kubernetes') { 
         script {
           kubernetesDeploy(configs: "works.yml" , kubeconfigId: "kubernetes")
 	    }
-            }       
+                   
                                          }
 }
