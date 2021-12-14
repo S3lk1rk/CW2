@@ -17,7 +17,7 @@ node {
         
         docker.withRegistry('https://registry.hub.docker.com', 'git') {
             jenkdhub.push("${env.BUILD_NUMBER}")
-            jenkdhub.push("latest")                                                  }
+            jenkdhub.push("latest")                                                  
           }
      }
 
@@ -35,4 +35,4 @@ node {
         sh "ssh -o StrictHostKeyChecking=no ubuntu@$ip kubectl set image mselkirk/devopscoursework jenkdhub=devopscoursework:$version"  
 
    }
-}
+} 
