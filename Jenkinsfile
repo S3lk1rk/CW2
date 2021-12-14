@@ -30,7 +30,7 @@ node {
     stage('Deploying App to kubernetes') {
       steps{ 
         script {
-          kubectl create deployment kubernetes-cw2 --image=mselkirk/devopscoursework
+          kubernetesDeploy(configs: "works.yml" , kubeconfigId: "kubernetes")
 	    }
             }       
                                          }
