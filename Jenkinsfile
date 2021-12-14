@@ -35,7 +35,7 @@ node {
     stage('Deploying App to kubernetes') {
       
         script {
-          kubernetesDeploy(configs: "/~/CW2/ansible/minicube.yml" , kubeconfigId: "kubernetes")
+          kubernetesDeploy(configs: "minicube.yml" , kubeconfigId: "kubernetes")
 	    }
                    
                                          }
