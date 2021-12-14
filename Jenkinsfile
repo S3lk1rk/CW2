@@ -2,8 +2,7 @@ node {
     def jenkdhub
     def ip = '184.72.71.184'
     def version = 'latest'
-    stage('Clone repository') {
-    def dhub = "https://hub.docker.com/repository/docker/mselkirk"      
+    stage('Clone repository') {      
 
         checkout scm
     }
@@ -32,7 +31,7 @@ node {
 
     stage('Deploying App to kubernetes') { 
 
-        sh "ssh -o StrictHostKeyChecking=no ubuntu@$ip kubectl set image jenkdhub/devopscoursework jenkdhub=devopscoursework:$version"  
+        sh "ssh -o StrictHostKeyChecking=no ubuntu@$ip kubectl set image jenkdhub jenkdhub=devopscoursework:$version"  
 
    }
 } 
