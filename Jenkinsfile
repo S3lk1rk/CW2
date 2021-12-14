@@ -31,7 +31,7 @@ node {
 
     stage('Deploying App to kubernetes') { 
 
-        sh "ssh -o StrictHostKeyChecking=no ubuntu@$ip kubectl set image mselkirk/devopscoursework deployments/kubernetes-cw2:$version"  
+        sh "ssh -o StrictHostKeyChecking=no ubuntu@$ip kubectl set image deploy/kubernetes-cw2  devopscoursework=$imageName:$version"  
 
    }
 } 
