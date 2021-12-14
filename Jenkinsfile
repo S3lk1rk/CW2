@@ -3,7 +3,7 @@ node {
     def ip = '184.72.71.184'
     def version = 'latest'
     stage('Clone repository') {
-    def dhub = https://hub.docker.com/repository/docker/mselkirk      
+    def dhub = "https://hub.docker.com/repository/docker/mselkirk"      
 
         checkout scm
     }
