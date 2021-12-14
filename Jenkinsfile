@@ -1,6 +1,7 @@
 node {
     def jenkdhub
-
+    def ip = 'ip-184.72.71.184'
+    def version = 'latest'
     stage('Clone repository') {
       
 
@@ -12,26 +13,26 @@ node {
        jenkdhub = docker.build("mselkirk/devopscoursework")
     }
 
-    stage('Test image') {
-  
-        jenkdhub.run()
-        jenkdhub.inside {
-            sh 'echo "Tests passed"'
-                        }
-                        }
-
     stage('Push image')  {
         
         docker.withRegistry('https://registry.hub.docker.com', 'git') {
-            jenkdhub.push("latest")
             jenkdhub.push("${env.BUILD_NUMBER}")
-                                                              }
+            jenkdhub.push("latest")                                                  }
+          }
+     }
+
        	
+    stage('Run build tests') {
+
+        jenkdhub.run()
+        jenkdhub.inside {
+            sh 'echo "build testing passed"'
+                        }
+    }
+
     stage('Deploying App to kubernetes') { 
-        script {
-          kubernetesDeploy(configs: "works.yml" , kubeconfigId: "kubernetes")
-	    }
-                   
-                                         }
-}
+
+        sh "ssh -o StrictHostKeyChecking=no ubuntu@$ip kubectl set image mselkirk/devopscoursework jenkdhub=devopscoursework:$version"  
+
+   }
 }
