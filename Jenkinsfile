@@ -30,7 +30,7 @@ node {
     stage('Deploying App to kubernetes') {
       steps{ 
         script {
-          kubectl set image deploy/nodejs-cwk2 nodejs-image-demontime2:latest
+          kubectl create deployment kubernetes-cw2 --image=mselkirk/devopscoursework
 	    }
             }       
                                          }
