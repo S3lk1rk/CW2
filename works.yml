@@ -1,11 +1,16 @@
-- name: A playbook that will create a deployment from the dockerhub image, create a service and make the deployment scaleable. It will also clean up any existing versions.
-  hosts: localhost
-  user: ubuntu
-  become: yes
-  tasks:
-    - name: B. initializing deployment from dockerhub
-      become: no
-      shell:
-          cmd: kubectl create deployment kubernetes-cw2 --image=mselkirk/devopscoursework
-
-
+apiVersion: extensions/v1
+kind: Deployment
+metadata:
+  name: devopscoursework-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: devopscoursework-app
+    spec:
+      containers:
+      - name: devopscoursework-container
+        image: mselkirk/devopscoursework:latest>
+        ports:
+        - containerPort: 80
