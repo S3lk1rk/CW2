@@ -1,34 +1,17 @@
-- name: A playbook that will create a deployment from the dockerhub image, create a service and make the deployment scaleable. It will also clean up any existing versions.
+- name: A playbook to deploy an image, create a service and scale a deployment on a VM
   hosts: localhost
   user: ubuntu
-  become: yes   
+  become: no
   tasks:
-    - name: A. Clearing existing deployments
-      become: no
-      shell:
-         cmd: kubectl delete deploy kubernetes-cw2
-    - name: B. initializing deployment from dockerhub
-      become: no
-      shell:
-          cmd: kubectl create deployment kubernetes-cw2 --image=mselkirk/devopscoursework
-    - name: C. Checking if the deployment was successful
-      become: no
-      shell:
-          cmd: kubectl get deployments
-    - name: D. Removing existing service
-      become: no
-      shell:
-          cmd: kubectl delete svc node-port-cw2
-    - name: E. Initializing the service to make the deployment accessible to Jenkins port
-      become: no
-      shell:
-          cmd: kubectl expose deployment/kubernetes-cw2 --type="NodePort" --port 80 --name node-port-cw2
-    - name: F. Checking if the service was initialized successfully
-      become: no
-      shell:
-          cmd: kubectl get services
-    - name: G. Scale deployment by creating 4 replicas to prevent downtime
-      become: no
-      shell:
-          cmd: kubectl scale deployments/kubernetes-cw2 --replicas=4   
-
+  - name: 3.1. Create docker image deployment
+    become: no
+    shell:
+        cmd: kubectl create deployment docker-kubernetes-cw2 --image=mselkirk/devopscoursework
+  - name: 3.2. Create service
+    become: no
+    shell:
+        cmd: kubectl expose deployment/docker-kubernetes-cw2 --type="NodePort" --port 80 --name node-port-service
+  - name: 3.3. Scale Deployment
+    become: no
+    shell:
+        cmd: kubectl scale deployments/docker-kubernetes-cw2 --replicas=4
