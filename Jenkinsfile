@@ -10,13 +10,13 @@ node {
 
     stage('Build coursework image') {
   
-       jenkdhub = docker.build("mselkirk/devopscoursework")
+       jenkdhub = docker.build("mselkirk/devopscoursework:$version")
     }
 
     stage('Push coursework image to dockerhub')  {
         
         docker.withRegistry('https://registry.hub.docker.com', 'git') {
-            jenkdhub.push($version)                                                  
+            jenkdhub.push("$version")                                                  
           }
      }
 
