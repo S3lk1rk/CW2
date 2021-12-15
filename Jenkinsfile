@@ -1,7 +1,7 @@
 node {
     def jenkdhub
     def ip = '18.212.77.35'
-    def version = 'latesttest'
+    def version = 'latesttest1'
     def imageName = "mselkirk/devopscoursework"
     stage('Clone repository') {      
 
