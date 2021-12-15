@@ -1,7 +1,7 @@
 node {
     def jenkdhub
     def ip = '184.72.71.184'
-    def version = 'dave'
+    def version = 'latest'
     def imageName = "devopscoursework"
     stage('Clone repository') {      
 
@@ -25,7 +25,7 @@ node {
        	
     stage('Run build tests') {
 
-        jenkdhub.run()
+        jenkdhub.run("docker run --rm --name devopscoursework  -p 80:80 -d mselkirk/devopscoursework:$version")
         jenkdhub.inside {
             sh 'echo "build testing passed"'
                         }
