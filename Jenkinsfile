@@ -30,7 +30,7 @@ node {
             sh 'echo "build testing passed"'
                         }
     }
-
+}
     stage('Deploying App to kubernetes') { 
 
         sh "ssh -o StrictHostKeyChecking=no ubuntu@$ip kubectl set image deploy/kubernetes-cw2  devopscoursework=$imageName:$version"  
