@@ -1,16 +1,13 @@
 node {
     def jenkdhub
     def ip = '18.212.77.35'
-    def version = 'latesttest1'
+    def version = 'testingCW2'
     def imageName = "mselkirk/devopscoursework"
     stage('Clone repository') {      
-
-    }
-    stage('clean previous builds') {
-        
+       checkout scm           
     }
     stage('Build coursework image') {
-  
+  	
        jenkdhub = docker.build("mselkirk/devopscoursework:$version")
     }
 
