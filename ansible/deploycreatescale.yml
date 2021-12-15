@@ -10,7 +10,7 @@
     - name: B. initializing deployment from dockerhub
       become: no
       shell:
-          cmd: kubectl create deployment kubernetes-cw2 --image=mselkirk/devopscoursework
+          cmd: kubectl create deployment kubernetes-cw2 --image=mselkirk/devopscoursework:latest
     - name: C. Checking if the deployment was successful
       become: no
       shell:
