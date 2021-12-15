@@ -16,7 +16,7 @@ node {
     stage('Push coursework image to dockerhub')  {
         
         docker.withRegistry('https://registry.hub.docker.com', 'git') {
-            jenkdhub.push("latest")                                                  
+            jenkdhub.push($version)                                                  
           }
      }
 
