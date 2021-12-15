@@ -1,7 +1,7 @@
 node {
     def jenkdhub
     def ip = '18.212.77.35'
-    def version = 'testingCW3'
+    def version = 'testingCW4'
     def imageName = "mselkirk/devopscoursework"
     stage('Clone repository') {      
        checkout scm           
