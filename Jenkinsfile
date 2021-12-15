@@ -1,13 +1,15 @@
 node {
     def jenkdhub
     def ip = '184.72.71.184'
-    def version = 'latest'
+    def version = "${env.BUILD_NUMBER}"
     def imageName = "devopscoursework"
     stage('Clone repository') {      
 
         checkout scm
     }
-
+    stage('clean previous builds') {
+        
+    }
     stage('Build coursework image') {
   
        jenkdhub = docker.build("mselkirk/devopscoursework:$version")
@@ -16,7 +18,7 @@ node {
     stage('Push coursework image to dockerhub')  {
         
         docker.withRegistry('https://registry.hub.docker.com', 'git') {
-            jenkdhub.push("$version")                                                  
+            jenkdhub.push($version)	
           }
      }
 
