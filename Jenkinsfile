@@ -24,7 +24,7 @@ node {
        	
     stage('Run build tests') {
 
-        jenkdhub.run("docker run --rm --name devopscoursework  -p 80:80 -d mselkirk/devopscoursework:$version")
+        jenkdhub.run("docker run --rm --name devopscoursework  -p 8080:8080 -d mselkirk/devopscoursework:$version")
         jenkdhub.inside {
             sh 'echo "build testing passed"'
                         }
