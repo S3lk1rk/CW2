@@ -5,7 +5,6 @@ node {
     def imageName = "devopscoursework"
     stage('Clone repository') {      
 
-        checkout scm
     }
     stage('clean previous builds') {
         
