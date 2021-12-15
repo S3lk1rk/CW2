@@ -31,3 +31,4 @@
       become: no
       shell:
           cmd: kubectl scale deployments/kubernetes-cw2 --replicas=4
+

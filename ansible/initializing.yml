@@ -14,7 +14,7 @@
     - name: C. Initializing the service to make the deployment accessible to Jenkins port
       become: no
       shell:
-          cmd: kubectl expose deployment/kubernetes-cw2 --type="NodePort" --port 80 --name node-port-service
+          cmd: kubectl expose deployment/kubernetes-cw2 --type="NodePort" --port 80 --name node-port-cw2
     - name: D. Checking if the service was initialized successfully
       become: no
       shell:
